@@ -1,4 +1,4 @@
-"""API views for TripPilot."""
+"""API views for TripPilot application."""
 import logging
 import requests
 from rest_framework.views import APIView
