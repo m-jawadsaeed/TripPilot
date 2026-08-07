@@ -30,7 +30,7 @@ function loadSaved() {
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
     <div
-      className={`rounded-xl p-5 shadow-sm ${className}`}
+      className={`rounded-xl p-4 sm:p-5 shadow-sm ${className}`}
       style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}
     >
       {children}
@@ -40,7 +40,7 @@ function Card({ children, className = '' }: { children: React.ReactNode; classNa
 
 function CardHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="px-5 py-3.5" style={{ borderBottom: '1px solid var(--border)' }}>
+    <div className="px-4 sm:px-5 py-3 sm:py-3.5" style={{ borderBottom: '1px solid var(--border)' }}>
       {children}
     </div>
   );
@@ -66,9 +66,9 @@ export function PlanPage() {
     <div className="space-y-5">
       {!tripData && !tripMutation.isPending && (
         <div className="max-w-2xl mx-auto">
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Plan Your Trip</h2>
-            <p className="text-sm mb-5" style={{ color: 'var(--text-secondary)' }}>Enter your trip details below to get started.</p>
+          <Card className="p-4 sm:p-6">
+            <h2 className="text-lg sm:text-xl font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Plan Your Trip</h2>
+            <p className="text-sm mb-4 sm:mb-5" style={{ color: 'var(--text-secondary)' }}>Enter your trip details below to get started.</p>
             <TripForm onSubmit={handleSubmit} isLoading={tripMutation.isPending} />
           </Card>
         </div>
@@ -85,7 +85,7 @@ export function PlanPage() {
       {!tripMutation.isPending && tripData && (
         <div className="space-y-5">
           <Card>
-            <h2 className="text-lg font-semibold mb-4 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
+            <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
               <BarChart3 className="w-5 h-5" style={{ color: 'var(--text-muted)' }} />
               Trip Summary
             </h2>
@@ -95,31 +95,31 @@ export function PlanPage() {
           <ErrorBoundary>
             <div className="rounded-xl overflow-hidden shadow-sm" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
               <CardHeader>
-                <h2 className="text-lg font-semibold flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
+                <h2 className="text-base sm:text-lg font-semibold flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
                   <Map className="w-5 h-5" style={{ color: 'var(--text-muted)' }} />
                   Route Map
                 </h2>
               </CardHeader>
-              <div className="p-4">
+              <div className="p-3 sm:p-4">
                 <RouteMap route={tripData.route} />
               </div>
             </div>
           </ErrorBoundary>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
             <div className="rounded-xl overflow-hidden shadow-sm" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
               <CardHeader>
-                <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>Timeline</h2>
+                <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>Timeline</h2>
               </CardHeader>
-              <div className="p-4">
+              <div className="p-3 sm:p-4">
                 <Timeline events={tripData.timeline} />
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-sm" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
               <CardHeader>
-                <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>Directions</h2>
+                <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>Directions</h2>
               </CardHeader>
-              <div className="p-4">
+              <div className="p-3 sm:p-4">
                 <RouteInstructions instructions={tripData.route.instructions} />
               </div>
             </div>

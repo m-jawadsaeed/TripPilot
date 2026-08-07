@@ -115,3 +115,10 @@ html.dark .leaflet-container {
   background: var(--border-secondary);
   border-radius: 3px;
 }
+
+@media (max-width: 640px) {
+  svg[role="img"] {
+    width: 100%;
+    height: auto;
+  }
+}
