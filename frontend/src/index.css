@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: #ffffff;
+  --surface-secondary: #f9fafb;
+  --surface-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --border: #e5e7eb;
+  --border-secondary: #d1d5db;
+  --accent: #111827;
+  --accent-hover: #1f2937;
+  --body-bg: #f3f4f6;
+  --body-text: #111827;
+  --eld-grid: #e5e7eb;
+  --eld-axis-text: #6b7280;
+  --eld-label-text: #374151;
+  --eld-row-a: #f3f4f6;
+  --eld-row-b: #e5e7eb;
+  --eld-trace: #d97706;
+}
+
+html.dark {
+  --surface: #1f2937;
+  --surface-secondary: #111827;
+  --surface-tertiary: #030712;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #6b7280;
+  --border: #374151;
+  --border-secondary: #4b5563;
+  --accent: #f9fafb;
+  --accent-hover: #e5e7eb;
+  --body-bg: #030712;
+  --body-text: #f9fafb;
+  --eld-grid: #374151;
+  --eld-axis-text: #9ca3af;
+  --eld-label-text: #9ca3af;
+  --eld-row-a: #1f2937;
+  --eld-row-b: #111827;
+  --eld-trace: #f59e0b;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  background-color: var(--body-bg);
+  color: var(--body-text);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.leaflet-container {
+  background: #e5e7eb;
+  border-radius: 8px;
+  height: 100% !important;
+}
+
+html.dark .leaflet-container {
+  background: #1f2937;
+}
+
+@media (max-width: 640px) {
+  .leaflet-container {
+    min-height: 250px;
+  }
+}
+
+.input-field {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background: var(--surface);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--border-secondary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.input-field:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-secondary);
+  border-radius: 3px;
+}
