@@ -9,8 +9,6 @@ COPY . .
 
 EXPOSE 8000
 
-# Require SECRET_KEY in production (when DEBUG=False)
-# The entrypoint validates env vars before starting
 CMD ["sh", "-c", "\
   if [ \"$DEBUG\" = 'False' ] && [ -z \"$SECRET_KEY\" ]; then \
     echo 'FATAL: SECRET_KEY is required in production'; exit 1; \

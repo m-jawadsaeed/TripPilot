@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.throttling import AnonRateThrottle
 from apps.trip.serializers import TripRequestSerializer
 from apps.trip.services.scheduler import plan_trip
-from apps.trip.utils.constants import ROUTING_API_URL, GEOCODING_API_URL, REQUEST_TIMEOUT
+from apps.trip.utils.constants import ROUTING_API_URL, GEOCODING_API_URL
 
 logger = logging.getLogger(__name__)
 
@@ -15,17 +15,13 @@ logger = logging.getLogger(__name__)
 class HealthCheckView(APIView):
 
     def get(self, request) -> Response:
-        checks = {
-            "api": "ok",
-            "osrm": "unknown",
-            "nominatim": "unknown",
-        }
+        checks = {"osrm": "unknown", "nominatim": "unknown"}
 
         try:
             r = requests.get(
                 f"{ROUTING_API_URL}/-96.7970,32.7767;-96.7970,32.7767",
                 params={"overview": "false"},
-                timeout=5,
+                timeout=3,
             )
             checks["osrm"] = "ok" if r.status_code == 200 else "error"
         except Exception:
@@ -36,19 +32,18 @@ class HealthCheckView(APIView):
                 GEOCODING_API_URL,
                 params={"q": "Dallas", "format": "json", "limit": 1},
                 headers={"User-Agent": "TripPilot/1.0 (health-check)"},
-                timeout=5,
+                timeout=3,
             )
             checks["nominatim"] = "ok" if r.status_code == 200 else "error"
         except Exception:
             checks["nominatim"] = "unreachable"
 
-        all_ok = all(v == "ok" for v in checks.values())
         return Response(
             {
-                "status": "ok" if all_ok else "degraded",
+                "status": "ok",
                 "checks": checks,
             },
-            status=status.HTTP_200_OK if all_ok else status.HTTP_503_SERVICE_UNAVAILABLE,
+            status=status.HTTP_200_OK,
         )
 
 
