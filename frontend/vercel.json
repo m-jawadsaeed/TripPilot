@@ -4,6 +4,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://trippilot-production.up.railway.app/api/:path*"
+    },
+    {
+      "source": "/((?!assets/|.*\\.).*)",
+      "destination": "/index.html"
     }
   ]
 }
